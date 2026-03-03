@@ -130,3 +130,9 @@ sh_binary {
     src: "postinst/auto_slot_set.sh",
     vendor: true,
 }
+
+sh_binary {
+    name: "init.slot_sync.sh",
+    src: "bin/init.slot_sync.sh",
+    vendor: true,
+}

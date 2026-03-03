@@ -14,6 +14,9 @@ on early-boot
     # Enable WLAN cold boot calibration
     write /sys/kernel/cnss/fs_ready 1
 
+    # Sync bootloader active slot with current boot slot
+    start slot_sync
+
 on early-init
     export ADSP_LIBRARY_PATH /odm/lib/rfsa/adsp;/vendor/lib/rfsa/adsp/;/system/lib/rfsa/adsp;/system/vendor/lib/rfsa/adsp;/dsp
     # set tcp_mtu_probing to 1
@@ -264,3 +267,11 @@ service vendor.sensors-hal-multihal /vendor/bin/hw/android.hardware.sensors-serv
     socket audio_us_socket_1 seqpacket 0666 system system
     capabilities BLOCK_SUSPEND
     rlimit rtprio 10 10
+
+# Slot synchronization service - ensures bootloader active slot matches booted slot
+service slot_sync /vendor/bin/init.slot_sync.sh
+    class core
+    user root
+    group root system
+    oneshot
+    disabled

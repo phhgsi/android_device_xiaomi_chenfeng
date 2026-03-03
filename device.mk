@@ -36,13 +36,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_vendor=ext4 \
     POSTINSTALL_OPTIONAL_vendor=true
 
-# Auto slot set postinstall
-PRODUCT_PACKAGES += auto_slot_set
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_vendor=true \
-    POSTINSTALL_PATH_vendor=bin/auto_slot_set \
-    FILESYSTEM_TYPE_vendor=ext4 \
-    POSTINSTALL_OPTIONAL_vendor=true
+# Slot synchronization script - ensures bootloader active slot matches booted slot
+PRODUCT_PACKAGES += init.slot_sync.sh
 
 PRODUCT_PACKAGES += \
     checkpoint_gc \
